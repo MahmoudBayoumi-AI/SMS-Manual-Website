@@ -1,0 +1,478 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyWings ATO - Safety Management System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .language-toggle {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .language-toggle button {
+            background-color: #2a5298;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            margin: 0 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .language-toggle button:hover {
+            background-color: #1e3c72;
+            transform: scale(1.05);
+        }
+
+        .language-toggle button.active {
+            background-color: #ff6b35;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .section {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+        }
+
+        .section h2 {
+            color: #2a5298;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .section h2::before {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 25px;
+            background-color: #ff6b35;
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+
+        .section-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .section-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .section p {
+            color: #555;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .section ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section li {
+            color: #555;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .section strong {
+            color: #1e3c72;
+        }
+
+        .info-box {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2a5298;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .info-box.highlight {
+            background-color: #fff3e0;
+            border-left-color: #ff6b35;
+        }
+
+        footer {
+            background-color: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .toggle-icon {
+            margin-left: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>SkyWings Aviation Training Organization</h1>
+        <p>Safety Management System (SMS) Portal</p>
+    </header>
+
+    <div class="container">
+        <div class="language-toggle">
+            <button id="engBtn" class="active" onclick="switchLanguage('en')">English</button>
+            <button id="arbBtn" onclick="switchLanguage('ar')">العربية</button>
+        </div>
+
+        <!-- ENGLISH CONTENT -->
+        <div id="en-content">
+            <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                <h2 style="color: #2a5298; margin-bottom: 1rem;">About SkyWings ATO</h2>
+                <p>SkyWings ATO is a specialized aviation training organization committed to providing high-quality pilot training programs in accordance with ICAO standards. We maintain the highest safety standards to ensure a secure training environment for all students and instructors.</p>
+                <div class="info-box highlight">
+                    <strong>Our Mission:</strong> To deliver world-class aviation training with an unwavering commitment to safety excellence.
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="section" onclick="toggleSection(this, 'en')">
+                    <h2>Safety Policy & Objectives <span class="toggle-icon">▼</span></h2>
+                    <div class="section-content">
+                        <p><strong>Safety Policy:</strong></p>
+                        <p>SkyWings ATO's senior management commits to providing a safe training environment through resource allocation and implementation of the highest safety standards. We encourage an open and fair reporting culture for hazards and incidents without fear of retaliation.</p>
+
+                        <p><strong>Safety Objectives:</strong></p>
+                        <ul>
+                            <li>Achieve zero major incidents in training operations</li>
+                            <li>Implement an effective hazard reporting system</li>
+                            <li>Conduct annual safety training for all staff</li>
+                            <li>Review and update safety policies every 6 months</li>
+                        </ul>
+
+                        <p><strong>Responsibilities:</strong></p>
+                        <ul>
+                            <li><strong>Chief Executive:</strong> Final responsibility for safety</li>
+                            <li><strong>Safety Manager:</strong> Daily SMS implementation and management</li>
+                            <li><strong>Instructors & Staff:</strong> Report hazards and comply with procedures</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section" onclick="toggleSection(this, 'en')">
+                    <h2>Safety Risk Management <span class="toggle-icon">▼</span></h2>
+                    <div class="section-content">
+                        <p><strong>Hazard Identification:</strong></p>
+                        <p>We use a systematic approach to identify potential hazards in training operations through:</p>
+                        <ul>
+                            <li>Analysis of past incidents</li>
+                            <li>Staff and student surveys</li>
+                            <li>Review of operational procedures</li>
+                        </ul>
+
+                        <p><strong>Risk Assessment:</strong></p>
+                        <p>Hazards are classified by severity and likelihood (High, Medium, Low) and recorded in a centralized register.</p>
+
+                        <p><strong>Control Measures:</strong></p>
+                        <ul>
+                            <li>Implement preventive measures for high-risk hazards</li>
+                            <li>Conduct periodic reviews for medium and low risks</li>
+                            <li>Document all actions taken</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section" onclick="toggleSection(this, 'en')">
+                    <h2>Safety Assurance <span class="toggle-icon">▼</span></h2>
+                    <div class="section-content">
+                        <p><strong>Monitoring & Measurement:</strong></p>
+                        <ul>
+                            <li>Semi-annual internal audits of all operations</li>
+                            <li>Monthly reviews of hazard and incident reports</li>
+                            <li>Performance indicators measurement (incident rate, reporting rate)</li>
+                        </ul>
+
+                        <p><strong>Continuous Improvement:</strong></p>
+                        <ul>
+                            <li>Analyze audit results and implement corrective actions</li>
+                            <li>Quarterly safety committee meetings</li>
+                            <li>Update procedures based on lessons learned</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <strong>Key Focus:</strong> Ensuring all safety controls are effective and identifying areas for improvement.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section" onclick="toggleSection(this, 'en')">
+                    <h2>Safety Promotion <span class="toggle-icon">▼</span></h2>
+                    <div class="section-content">
+                        <p><strong>Training:</strong></p>
+                        <ul>
+                            <li>Mandatory annual safety training for all staff</li>
+                            <li>Regular workshops on emerging hazards</li>
+                            <li>Induction programs for new employees</li>
+                        </ul>
+
+                        <p><strong>Communication & Awareness:</strong></p>
+                        <ul>
+                            <li>Monthly safety newsletters</li>
+                            <li>Safety information bulletin boards</li>
+                            <li>Confidential and non-punitive reporting system</li>
+                        </ul>
+
+                        <p><strong>Safety Culture:</strong></p>
+                        <p>We believe in a just culture where everyone feels safe reporting hazards without fear of punishment. This approach promotes continuous learning and improvement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ARABIC CONTENT -->
+        <div id="ar-content" class="hidden" dir="rtl">
+            <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                <h2 style="color: #2a5298; margin-bottom: 1rem;">حول SkyWings ATO</h2>
+                <p>SkyWings ATO هي منظمة تدريب طيران متخصصة ملتزمة بتقديم برامج تدريب طيارين عالية الجودة وفقاً لمعايير ICAO. نحافظ على أعلى معايير السلامة لضمان بيئة تدريبية آمنة لجميع الطلاب والمدربين.</p>
+                <div class="info-box highlight">
+                    <strong>مهمتنا:</strong> تقديم تدريب طيران عالمي المستوى مع التزام ثابت بتميز السلامة.
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="section" onclick="toggleSection(this, 'ar')">
+                    <h2>سياسة وأهداف السلامة <span class="toggle-icon">▼</span></h2>
+                    <div class="section-content">
+                        <p><strong>سياسة السلامة:</strong></p>
+                        <p>تلتزم الإدارة العليا في SkyWings بتوفير بيئة تدريبية آمنة من خلال تخصيص الموارد وتطبيق أعلى معايير السلامة. نشجع ثقافة الإبلاغ المفتوح والعادل عن المخاطر والحوادث بدون خوف من العقاب.</p>
+
+                        <p><strong>أهداف السلامة:</strong></p>
+                        <ul>
+                            <li>تحقيق صفر حوادث كبرى في العمليات التدريبية</li>
+                            <li>تطبيق نظام إبلاغ فعّال للمخاطر</li>
+                            <li>تدريب جميع الموظفين على السلامة سنوياً</li>
+                            <li>مراجعة وتحديث سياسات السلامة كل 6 أشهر</li>
+                        </ul>
+
+                        <p><strong>المسؤوليات:</strong></p>
+                        <ul>
+                            <li><strong>الرئيس التنفيذي:</strong> المسؤولية النهائية عن السلامة</li>
+                            <li><strong>مدير السلامة:</strong> تنفيذ وإدارة نظام SMS يومياً</li>
+                            <li><strong>المدربون والموظفون:</strong> الإبلاغ عن المخاطر والالتزام بالإجراءات</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section" onclick="toggleSection(this, 'ar')">
+                    <h2>إدارة مخاطر السلامة <span class="toggle-icon">▼</span></h2>
+                    <div class="section-content">
+                        <p><strong>تحديد المخاطر:</strong></p>
+                        <p>نستخدم منهجية منظمة لتحديد المخاطر المحتملة في العمليات التدريبية من خلال:</p>
+                        <ul>
+                            <li>تحليل الحوادث السابقة</li>
+                            <li>استبيانات الموظفين والمتدربين</li>
+                            <li>مراجعة العمليات التشغيلية</li>
+                        </ul>
+
+                        <p><strong>تقييم المخاطر:</strong></p>
+                        <p>يتم تصنيف المخاطر حسب الشدة والاحتمالية (عالي، متوسط، منخفض) وتسجيلها في سجل مركزي.</p>
+
+                        <p><strong>إجراءات التحكم:</strong></p>
+                        <ul>
+                            <li>تطبيق إجراءات وقائية للمخاطر العالية</li>
+                            <li>مراجعة دورية للمخاطر المتوسطة والمنخفضة</li>
+                            <li>توثيق جميع الإجراءات المتخذة</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section" onclick="toggleSection(this, 'ar')">
+                    <h2>ضمان السلامة <span class="toggle-icon">▼</span></h2>
+                    <div class="section-content">
+                        <p><strong>المراقبة والقياس:</strong></p>
+                        <ul>
+                            <li>تدقيق داخلي نصف سنوي لجميع العمليات</li>
+                            <li>مراجعة شهرية لتقارير المخاطر والحوادث</li>
+                            <li>قياس مؤشرات الأداء (معدل الحوادث، معدل الإبلاغ)</li>
+                        </ul>
+
+                        <p><strong>التحسين المستمر:</strong></p>
+                        <ul>
+                            <li>تحليل نتائج التدقيق واتخاذ إجراءات تصحيحية</li>
+                            <li>اجتماعات لجنة السلامة ربع السنوية</li>
+                            <li>تحديث الإجراءات بناءً على الدروس المستفادة</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <strong>التركيز الرئيسي:</strong> ضمان فعالية جميع إجراءات السلامة وتحديد مجالات التحسين.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section" onclick="toggleSection(this, 'ar')">
+                    <h2>تعزيز السلامة <span class="toggle-icon">▼</span></h2>
+                    <div class="section-content">
+                        <p><strong>التدريب:</strong></p>
+                        <ul>
+                            <li>تدريب السلامة الإلزامي السنوي لجميع الموظفين</li>
+                            <li>ورش عمل منتظمة حول المخاطر الناشئة</li>
+                            <li>برامج التوجيه للموظفين الجدد</li>
+                        </ul>
+
+                        <p><strong>الاتصال والتوعية:</strong></p>
+                        <ul>
+                            <li>نشرات السلامة الشهرية</li>
+                            <li>لوحات إعلانات معلومات السلامة</li>
+                            <li>نظام إبلاغ سري وغير عقابي</li>
+                        </ul>
+
+                        <p><strong>ثقافة السلامة:</strong></p>
+                        <p>نؤمن بثقافة العدالة حيث يشعر الجميع بالأمان عند الإبلاغ عن المخاطر بدون خوف من العقاب. يعزز هذا النهج التعلم المستمر والتحسين.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <h3 id="footer-title">Contact Information</h3>
+        <div class="contact-info">
+            <p id="footer-email"><strong>Safety Manager:</strong> mahmoudbayoumi165@gmail.com</p>
+            <p id="footer-phone"><strong>Emergency Line:</strong> +201015936544</p>
+            <p id="footer-address"><strong>Address:</strong> SkyWings Training Center, Aviation Boulevard, Sky City</p>
+        </div>
+        <p id="footer-copyright" style="margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">© 2025 SkyWings Aviation Training Organization. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleSection(element, lang) {
+            const content = element.querySelector('.section-content');
+            const icon = element.querySelector('.toggle-icon');
+
+            // Close other sections in the same language
+            const sections = document.querySelectorAll('#' + lang + '-content .section');
+            sections.forEach(sec => {
+                if (sec !== element) {
+                    sec.querySelector('.section-content').classList.remove('active');
+                    sec.querySelector('.toggle-icon').textContent = '▼';
+                }
+            });
+
+            // Toggle current section
+            content.classList.toggle('active');
+            icon.textContent = content.classList.contains('active') ? '▲' : '▼';
+        }
+
+        function switchLanguage(lang) {
+            const enContent = document.getElementById('en-content');
+            const arContent = document.getElementById('ar-content');
+            const engBtn = document.getElementById('engBtn');
+            const arbBtn = document.getElementById('arbBtn');
+
+            if (lang === 'en') {
+                enContent.classList.remove('hidden');
+                arContent.classList.add('hidden');
+                engBtn.classList.add('active');
+                arbBtn.classList.remove('active');
+                document.body.dir = 'ltr';
+
+                // Update footer for English
+                document.getElementById('footer-title').textContent = 'Contact Information';
+                document.getElementById('footer-email').innerHTML = '<strong>Safety Manager:</strong> safety@skywings-ato.com';
+                document.getElementById('footer-phone').innerHTML = '<strong>Emergency Line:</strong> +1-800-SMS-SAFE';
+                document.getElementById('footer-address').innerHTML = '<strong>Address:</strong> SkyWings Training Center, Aviation Boulevard, Sky City';
+            } else {
+                enContent.classList.add('hidden');
+                arContent.classList.remove('hidden');
+                engBtn.classList.remove('active');
+                arbBtn.classList.add('active');
+                document.body.dir = 'rtl';
+
+                // Update footer for Arabic
+                document.getElementById('footer-title').textContent = 'معلومات الاتصال';
+                document.getElementById('footer-email').innerHTML = '<strong>مدير السلامة:</strong> safety@skywings-ato.com';
+                document.getElementById('footer-phone').innerHTML = '<strong>خط الطوارئ:</strong> +1-800-SMS-SAFE';
+                document.getElementById('footer-address').innerHTML = '<strong>العنوان:</strong> مركز تدريب SkyWings، جادة الطيران، مدينة السماء';
+            }
+        }
+    </script>
+</body>
+</html>
